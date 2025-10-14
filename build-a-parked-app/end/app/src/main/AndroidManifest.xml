@@ -25,15 +25,12 @@
 
     <application
         android:allowBackup="true"
+        android:appCategory="video"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.RoadReels"
         tools:targetApi="34">
-
-        <meta-data
-            android:name="com.android.automotive"
-            android:resource="@xml/automotive_app_desc" />
 
         <activity
             android:name="com.example.android.cars.roadreels.MainActivity"
