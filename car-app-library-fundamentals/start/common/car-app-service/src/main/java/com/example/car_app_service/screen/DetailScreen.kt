@@ -2,7 +2,6 @@ package com.example.car_app_service.screen
 
 import androidx.car.app.CarContext
 import androidx.car.app.Screen
-import androidx.car.app.hardware.CarHardwareManager
 import androidx.car.app.model.Action
 import androidx.car.app.model.CarIcon
 import androidx.car.app.model.Header
