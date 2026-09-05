@@ -44,6 +44,7 @@ class NewMainScreen(carContext: CarContext): Screen(carContext) {
             AppScreen.SignIn -> screenManager.push(SignInScreen(carContext))
             AppScreen.Details -> screenManager.push(DetailScreen(carContext,1))
             AppScreen.Grid -> screenManager.push(GridScreen(carContext))
+            AppScreen.About -> screenManager.push(AboutCarScreen(carContext))
         }
 
     }
