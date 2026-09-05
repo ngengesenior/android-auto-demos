@@ -29,6 +29,10 @@ class AboutCarScreen(carContext: CarContext): Screen(carContext) {
             .build()
     }
 
+    init {
+        fetchVehicleInfo()
+    }
+
     private fun fetchVehicleInfo(){
        val hardwareManager = carContext.getCarService(CarContext.HARDWARE_SERVICE) as CarHardwareManager
         val carInfo = hardwareManager.carInfo
