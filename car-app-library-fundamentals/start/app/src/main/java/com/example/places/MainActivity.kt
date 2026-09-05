@@ -21,6 +21,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.car.app.connection.CarConnection
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -35,8 +36,11 @@ import androidx.compose.material.icons.filled.Place
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -54,17 +58,26 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
 
         setContent {
+            val connectionType by CarConnection(this).type.observeAsState(initial = -1)
             PlacesTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding->
-                    Column(
-                        modifier = Modifier.padding(innerPadding)
-                    ) {
-                        Text(
-                            text = "Places",
-                            style = MaterialTheme.typography.displayLarge,
-                            modifier = Modifier.padding(8.dp)
-                        )
-                        PlaceList(places = PlacesRepository().getPlaces())
+                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
+
+                    Surface(modifier = Modifier.fillMaxSize(),
+                        color = MaterialTheme.colorScheme.background) {
+                        Column(
+                            modifier = Modifier.padding(innerPadding)
+                        ) {
+                            Text(
+                                text = "Places",
+                                style = MaterialTheme.typography.displayLarge,
+                                modifier = Modifier.padding(8.dp)
+                            )
+                            ProjectionState(
+                                carConnectionType = connectionType,
+                                modifier = Modifier.padding(8.dp)
+                            )
+                            PlaceList(places = PlacesRepository().getPlaces())
+                        }
                     }
                 }
             }
@@ -116,4 +129,17 @@ fun PlaceList(places: List<Place>) {
             }
         }
     }
+}
+
+@Composable
+fun ProjectionState(carConnectionType:Int, modifier: Modifier = Modifier){
+    val text = when(carConnectionType) {
+        CarConnection.CONNECTION_TYPE_NOT_CONNECTED -> "Not projecting"
+        CarConnection.CONNECTION_TYPE_NATIVE -> "Running on Android Automotive OS"
+        CarConnection.CONNECTION_TYPE_PROJECTION -> "Projecting"
+        else -> "Unknown connection type"
+    }
+
+    Text(text = text, modifier = modifier,
+        style = MaterialTheme.typography.bodyMedium)
 }

@@ -40,6 +40,12 @@ val PLACES = listOf(
         40.689167,
         -74.044444
     ),
+    Place(3,
+        "My Home Address",
+        "This is probably where I used to live",
+        34.977826,
+        -80.572979
+        )
 )
 
 class PlacesRepository {

@@ -71,7 +71,9 @@ dependencies {
     implementation(libs.androidx.compose.runtime.livedata)
     implementation(libs.androidx.ui)
     implementation(libs.androidx.material3)
+    implementation(libs.androidx.car.app)
     implementation(project(":common:data"))
+    implementation(project(":common:car-app-service"))
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
