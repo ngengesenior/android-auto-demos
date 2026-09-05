@@ -40,7 +40,7 @@ class GridScreen(carContext: CarContext): Screen(carContext) {
             .Builder()
             .setHeader(Header.Builder()
                 .setTitle("Songs")
-                .addEndHeaderAction(Action.BACK)
+                .setStartHeaderAction(Action.BACK)
                 .build())
             .setSingleList(itemListBuilder.build())
             .build()

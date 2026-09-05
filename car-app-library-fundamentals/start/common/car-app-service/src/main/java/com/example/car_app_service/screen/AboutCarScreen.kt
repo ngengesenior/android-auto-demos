@@ -6,6 +6,7 @@ import androidx.car.app.Screen
 import androidx.car.app.hardware.CarHardwareManager
 import androidx.car.app.hardware.common.CarValue
 import androidx.car.app.hardware.info.Model
+import androidx.car.app.model.Action
 import androidx.car.app.model.Header
 import androidx.car.app.model.MessageTemplate
 import androidx.car.app.model.Template
@@ -28,6 +29,7 @@ class AboutCarScreen(carContext: CarContext): Screen(carContext) {
             .setHeader(
                 Header.Builder()
                     .setTitle("Car Info")
+                    .setStartHeaderAction(Action.BACK)
                     .build(),
             )
             .build()

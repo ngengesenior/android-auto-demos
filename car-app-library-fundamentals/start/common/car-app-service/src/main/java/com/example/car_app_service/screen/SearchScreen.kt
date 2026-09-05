@@ -2,6 +2,7 @@ package com.example.car_app_service.screen
 
 import androidx.car.app.CarContext
 import androidx.car.app.Screen
+import androidx.car.app.model.Action
 import androidx.car.app.model.ItemList
 import androidx.car.app.model.Row
 import androidx.car.app.model.SearchTemplate
@@ -44,6 +45,7 @@ class SearchScreen(carContext: CarContext) : Screen(carContext) {
         return SearchTemplate.Builder(searchCallback)
             .setSearchHint("Search songs...")
             .setShowKeyboardByDefault(true)
+            .setHeaderAction(Action.BACK)
             .setInitialSearchText(searchQuery)
             .setItemList(itemListBuilder.build())
             .build()
